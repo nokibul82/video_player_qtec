@@ -26,9 +26,7 @@ class HomeController extends GetxController{
       });
       if (response.statusCode == 200) {
         isLoading.value = false;
-        print(response.body.runtimeType);
-        final data = json.decode(response.body) as Map<String,dynamic>;
-        print(data.runtimeType);
+        final data = json.decode(utf8.decode(response.bodyBytes)) as Map<String,dynamic>;
         if (data['results'] is List) {
           videoList.value = (data['results'] as List)
               .map((videoJson) => VideoModel.fromJson(videoJson))
@@ -47,10 +45,5 @@ class HomeController extends GetxController{
       print(e.toString());
     }
   }
-
-
-
-
-
 
 }

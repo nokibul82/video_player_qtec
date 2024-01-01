@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
     final homeController = Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Trending Videos"),
+        title: const Text("Trending Videos",style: TextStyle(fontFamily: 'Mina-Regular')),
       ),
       body: Obx(() {
         return homeController.isLoading.value
