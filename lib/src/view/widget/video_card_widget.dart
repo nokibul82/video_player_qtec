@@ -1,170 +1,104 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import '../../model/video_model.dart';
 
 class VideoCardWidget extends StatelessWidget {
-  const VideoCardWidget({super.key, required this.videoModel});
   final VideoModel videoModel;
+
+  const VideoCardWidget({
+    Key? key,
+    required this.videoModel,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child:
-      Container(
-        width: 346,
-        height: 290,
-        clipBehavior: Clip.antiAlias,
-        decoration: BoxDecoration(color: Colors.white),
-        child: Stack(
-          children: [
-            Positioned(
-              left: 17,
-              top: 208.83,
-              child: Container(
-                width: 287,
-                height: 66,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      child: Container(
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              width: 40,
-                              height: 40,
-                              decoration: ShapeDecoration(
-                                image: DecorationImage(
-                                  image: NetworkImage(videoModel.channelImage),
-                                  fit: BoxFit.fill,
-                                ),
-                                shape: OvalBorder(),
-                              ),
-                            ),
-                            const SizedBox(width: 12),
-                            SizedBox(
-                              width: 235,
-                              height: 40,
-                              child: Text(
-                                videoModel.title,
-                                style: const TextStyle(
-                                  color: Color(0xFF1A202C),
-                                  fontSize: 15,
-                                  fontFamily: 'Mina-Regular',
-                                  fontWeight: FontWeight.w600,
-                                  height: 0.09,
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                    Positioned(
-                      left: 52,
-                      top: 48,
-                      child: Text(
-                        '${videoModel.viewers} views  .   ${DateFormat.yMMMd().format(videoModel.createdAt)}',
-                        style: TextStyle(
-                          color: Color(0xFF718096),
-                          fontSize: 13,
-                          fontFamily: 'Mina-Regular',
-                          fontWeight: FontWeight.w400,
-                          height: 0.11,
-                          letterSpacing: -0.26,
-                        ),
-                      ),
-                    ),
-                  ],
+    return GestureDetector(
+      onTap: () {},
+      child: Column(
+        children: [
+          Stack(
+            children: [
+              Padding(
+                padding: const EdgeInsets.symmetric(
+                  horizontal:  12.0,
+                ),
+                child: Image.network(
+                  videoModel.thumbnail,
+                  height: 220.0,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
                 ),
               ),
-            ),
-            Positioned(
-              left: 0,
-              top: 0,
-              child: Container(
-                width: 346,
-                height: 192,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                    image: NetworkImage(videoModel.thumbnail),
-                    fit: BoxFit.fill,
+              Positioned(
+                bottom: 8.0,
+                right:20.0,
+                child: Container(
+                  padding: const EdgeInsets.all(4.0),
+                  color: Colors.black,
+                  child: Text(
+                    videoModel.duration,
+                    style: Theme.of(context)
+                        .textTheme
+                        .caption!
+                        .copyWith(color: Colors.white),
                   ),
                 ),
               ),
-            ),
-            Positioned(
-              left: 301.93,
-              top: 169.32,
-              child: Container(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 4),
-                      decoration: ShapeDecoration(
-                        color: Colors.black.withOpacity(0.9200000166893005),
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(4)),
-                      ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Text(
-                            videoModel.duration,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 12,
-                              fontFamily: 'Mina-Regular',
-                              fontWeight: FontWeight.w500,
-                              height: 0.12,
-                              letterSpacing: -0.24,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                GestureDetector(
+                  onTap: () => print('Navigate to profile'),
+                  child: CircleAvatar(
+                    foregroundImage: NetworkImage(videoModel.channelImage),
+                  ),
                 ),
-              ),
-            ),
-            Positioned(
-              left: 315,
-              top: 216.83,
-              child: Container(
-                width: 24,
-                height: 24,
-                child: Stack(
-                  children: [
-                    Positioned(
-                      left: 0,
-                      top: 0,
-                      child: Container(
-                        width: 24,
-                        height: 24,
-                        child: const Icon(Icons.more_vert),
+                const SizedBox(width: 8.0),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Flexible(
+                        child: Text(
+                          videoModel.title,
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyText1!
+                              .copyWith(fontSize: 15.0,fontWeight: FontWeight.bold),
+                        ),
                       ),
-                    ),
-                  ],
+                      Flexible(
+                        child: Text(
+                          '${videoModel.channelName} • ${videoModel.viewers} views • ${DateFormat.yMMMd().format(videoModel.dateAndTime)}',
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                          style: Theme.of(context)
+                              .textTheme
+                              .caption!
+                              .copyWith(fontSize: 14.0),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
+                GestureDetector(
+                  onTap: () {},
+                  child: const Icon(Icons.more_vert, size: 20.0),
+                ),
+              ],
             ),
-          ],
-        ),
-      )
-
-
-      // ListTile(
-      //   leading: Image.network(videoModel.thumbnail),
-      //   title: Text(videoModel.title,style: const TextStyle(fontFamily: 'Mina-Regular'),),
-      // ),
+          )
+        ],
+      ),
     );
   }
 }

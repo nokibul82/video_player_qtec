@@ -11,7 +11,7 @@ class HomeScreen extends StatelessWidget {
     final homeController = Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Trending Videos",style: TextStyle(fontFamily: 'Mina-Regular')),
+        title: Text("Trending Videos",style:Theme.of(context).textTheme.titleLarge),
       ),
       body: Obx(() {
         return homeController.isLoading.value
@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
               )
             : ListView.builder(
                 shrinkWrap: true,
-                physics: const BouncingScrollPhysics(),
+                //physics: const BouncingScrollPhysics(),
                 itemCount: homeController.videoList.value.length,
                 itemBuilder: (context, index) {
                   return VideoCardWidget(
