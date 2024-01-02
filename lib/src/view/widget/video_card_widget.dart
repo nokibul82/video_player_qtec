@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
+import 'package:video_player_qtec/src/view/screen/video_player_screen.dart';
 import '../../model/video_model.dart';
 
 class VideoCardWidget extends StatelessWidget {
@@ -14,7 +15,9 @@ class VideoCardWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {},
+      onTap: () {
+        Get.to(VideoPlayerScreen(videoModel: videoModel));
+      },
       child: Column(
         children: [
           Stack(
