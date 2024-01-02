@@ -78,7 +78,7 @@ class VideoCardWidget extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          '${videoModel.channelName} • ${videoModel.viewers} views • ${DateFormat.yMMMd().format(videoModel.dateAndTime)}',
+                          '${videoModel.viewers} views . ${DateFormat.yMMMd().format(videoModel.dateAndTime)}',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context)
