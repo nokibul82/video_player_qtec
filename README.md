@@ -6,7 +6,7 @@
 </head>
 <body>
     <header>
-        <h1>Video Player App for Qtec(pokeAPI)</h1>
+        <h1>Video Player App for Qtec</h1>
         <img src="[https://th.bing.com/th/id/OIP.-DNav8VsKmZcpwDAwkpopQHaHa?pid=ImgDet&rs=1](https://www.onlinelogomaker.com/blog/wp-content/uploads/2017/07/Fotolia_117855281_Subscription_Monthly_M.jpg)" alt="Project Logo" width="200" height="200">
     </header>
     <section id="description">
