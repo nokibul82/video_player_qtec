@@ -19,7 +19,7 @@
            <img src="https://github.com/nokibul82/video_player_qtec/blob/master/screenshots/home.png" alt="Screenshot 1" width="240" height="420">
            <img src="https://github.com/nokibul82/video_player_qtec/blob/master/screenshots/video_player1.png" alt="Screenshot 2" width="240" height="420">
            <img src="https://github.com/nokibul82/video_player_qtec/blob/master/screenshots/video_player2.png" alt="Screenshot 3" width="240" height="420">
-           <img src="https://github.com/nokibul82/video_player_qtec/blob/master/screenshots/video_player_full_screen.png" alt="Screenshot 3" width="240" height="420">
+           <img src="https://github.com/nokibul82/video_player_qtec/blob/master/screenshots/video_player_full_screen.png" alt="Screenshot 3" width="420" height="240">
         </ul>
     </section>
     <section id="contact">
