@@ -11,7 +11,8 @@ class HomeScreen extends StatelessWidget {
     final homeController = Get.put(HomeController());
     return Scaffold(
       appBar: AppBar(
-        title: Text("Trending Videos",style:Theme.of(context).textTheme.titleLarge),
+        title: Text("Trending Videos",
+            style: Theme.of(context).textTheme.titleLarge),
       ),
       body: Obx(() {
         return homeController.isLoading.value
@@ -20,15 +21,29 @@ class HomeScreen extends StatelessWidget {
                     strokeWidth: 2,
                     color: Theme.of(context).colorScheme.onPrimary),
               )
-            : ListView.builder(
-                shrinkWrap: true,
-                //physics: const BouncingScrollPhysics(),
-                itemCount: homeController.videoList.value.length,
-                itemBuilder: (context, index) {
-                  return VideoCardWidget(
-                    videoModel: homeController.videoList.value[index],
-                  );
+            : RefreshIndicator(
+                onRefresh: () async {
+                  homeController.refreshVideoList();
                 },
+                child: ListView.builder(
+                  controller: homeController.scrollController,
+                  shrinkWrap: true,
+                  //physics: const BouncingScrollPhysics(),
+                  itemCount: homeController.videoList.length,
+                  itemBuilder: (context, index) {
+                    if (index == homeController.videoList.length - 1 &&
+                        homeController.hasMoreData.value == true){
+                      return const Padding(
+                        padding: EdgeInsets.all(8.0),
+                        child: Center(child: CircularProgressIndicator(color: Colors.red,)),
+                      );
+                    }else{
+                      return VideoCardWidget(
+                        videoModel: homeController.videoList[index]
+                      );
+                    }
+                  },
+                ),
               );
       }),
     );

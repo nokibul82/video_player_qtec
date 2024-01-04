@@ -9,7 +9,7 @@ class VideoCardWidget extends StatelessWidget {
 
   const VideoCardWidget({
     Key? key,
-    required this.videoModel,
+    required this.videoModel
   }) : super(key: key);
 
   @override
@@ -81,13 +81,13 @@ class VideoCardWidget extends StatelessWidget {
                       ),
                       Flexible(
                         child: Text(
-                          '${videoModel.viewers} views . ${DateFormat.yMMMd().format(videoModel.dateAndTime)}',
+                          '${videoModel.viewers} views . ${DateFormat.yMMMd().format(videoModel.dateAndTime)}   .  Video ${videoModel.id}',
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: Theme.of(context)
                               .textTheme
                               .caption!
-                              .copyWith(fontSize: 14.0),
+                              .copyWith(fontSize: 12.0),
                         ),
                       ),
                     ],
